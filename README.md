@@ -39,8 +39,8 @@ GOROOT=/usr/lib/golang
 Para inicializar la red vamos a clonarnos este repositorio en la maquina donde acabamos de instalar ```geth```
 ```bash
 cd
-git clone THIS_REPO
-cd THIS_REPO
+git clone https://github.com/angelbarrera92/Ethereum-Private-Network.git
+cd ethereum-private-network
 cd scripts
 ./init_the_genesis.sh
 ```
