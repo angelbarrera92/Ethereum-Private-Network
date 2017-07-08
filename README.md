@@ -139,6 +139,8 @@ curl http://169.254.169.254/latest/meta-data/public-ipv4 && echo
 Entonces nuestro enode será: ```enode://b0cb65c92e1e3e06001e6ca70acc73e09104bac5915541b980983ae46d96bfd24ef94ff61e54b8d3aa10781deff93de36a73b6b2c3d9a030ba3d8126cbec5014@54.194.91.164:30303```
 #### Añadiendo nodos a nuestra red privada. 
 Habiendo inicializado n nodos con el procedimiento descrito anteriormente, podemos escribir en la consola geth el siguiente comando: 
+```bash
+admin.addPeer()
 ```
 #### Conexión de nodos
 Una vez obtenido un enode, podemos ir a otro nodo y añadirlo:
