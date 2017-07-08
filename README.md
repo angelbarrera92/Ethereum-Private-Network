@@ -5,12 +5,13 @@ INTRODUCCION VA AQUI
 ## Preparación
 
 ### Creación de Security Group
+Importante abrir el puerto en TCP y UDP
 
 ### Inicialización de un nodo. Amazon Linux AMI
 #### Instalación de geth
 Desafortunadamente no hay una distrubución de ```geth``` lista para instalar desde los repositorios de software de la AMI, por lo que debemos instalar ```geth``` desde el código fuente:
 ```bash
-sudo yum update
+sudo yum update -y
 sudo yum install golang -y
 git clone https://github.com/ethereum/go-ethereum.git
 cd go-ethereum/
@@ -136,3 +137,43 @@ curl http://169.254.169.254/latest/meta-data/public-ipv4 && echo
 54.194.91.164
 ```
 Entonces nuestro enode será: ```enode://b0cb65c92e1e3e06001e6ca70acc73e09104bac5915541b980983ae46d96bfd24ef94ff61e54b8d3aa10781deff93de36a73b6b2c3d9a030ba3d8126cbec5014@54.194.91.164:30303```
+#### Añadiendo nodos a nuestra red privada. 
+Habiendo inicializado n nodos con el procedimiento descrito anteriormente, podemos escribir en la consola geth el siguiente comando: 
+```
+#### Conexión de nodos
+Una vez obtenido un enode, podemos ir a otro nodo y añadirlo:
+```bash
+> admin.addPeer("enode://b0cb65c92e1e3e06001e6ca70acc73e09104bac5915541b980983ae46d96bfd24ef94ff61e54b8d3aa10781deff93de36a73b6b2c3d9a030ba3d8126cbec5014@54.194.91.164:30303")
+true
+> admin.peers
+[{
+    caps: ["eth/63"],
+    id: "b0cb65c92e1e3e06001e6ca70acc73e09104bac5915541b980983ae46d96bfd24ef94ff61e54b8d3aa10781deff93de36a73b6b2c3d9a030ba3d8126cbec5014",
+    name: "Geth/v1.6.7-unstable-65f0e905/linux-amd64/go1.7.5",
+    network: {
+      localAddress: "172.31.22.201:59654",
+      remoteAddress: "54.194.91.164:30303"
+    },
+    protocols: {
+      eth: {
+        difficulty: 200,
+        head: "0xb38dfbafcacd3c8a6324969358b95d54cc36d7d87362045375b83d83d5566e58",
+        version: 63
+      }
+    }
+}]
+> 
+```
+Con ello ya tendremos una red de ethereum privada con dos nodos
+#### Inicialización del minado
+Para inicializar el minado en cada uno de los nodos, debemos escribir el siguiente comando: 
+```
+miner.start(1)
+```
+La primera vez que ejecutamos este comando tardara unos minutos en generar el DAG (TODO, completar documentacion).
+
+Como hemos puesto en el bloque de genesis una dificultad bastante baja, el minado se realizará de una forma bastante rapida. 
+
+Teniendo un nodo minando y el otro pasivo, podemos ver en el nodo pasivo como el numero de bloques va incrementando ejecutando el comando: ```eth.blockNumber``` dentro de la consola de geth. 
+
+Con este comando tambien podemos comprobar como los dos nodos, u n nodos, están sincronizados
