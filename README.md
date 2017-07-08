@@ -35,12 +35,23 @@ GOPATH=
 GOROOT=/usr/lib/golang
 ```
 
-#### Inicialización de la red
+#### Inicialización de la red. Genesis
 Para inicializar la red vamos a clonarnos este repositorio en la maquina donde acabamos de instalar ```geth```
 ```bash
 cd
 git clone https://github.com/angelbarrera92/Ethereum-Private-Network.git
-cd ethereum-private-network
+cd Ethereum-Private-Network
 cd scripts
 ./init_the_genesis.sh
+```
+Debe de mostrar unas trazas similares a: 
+```bash
+./init_the_genesis.sh
+WARN [07-08|16:22:35] No etherbase set and no accounts found as default 
+INFO [07-08|16:22:35] Allocated cache and file handles         database=/home/ec2-user/data/ethPrivate/geth/chaindata cache=16 handles=16
+INFO [07-08|16:22:35] Writing custom genesis block 
+INFO [07-08|16:22:35] Successfully wrote genesis state         database=chaindata                                     hash=b38dfb…566e58
+INFO [07-08|16:22:35] Allocated cache and file handles         database=/home/ec2-user/data/ethPrivate/geth/lightchaindata cache=16 handles=16
+INFO [07-08|16:22:35] Writing custom genesis block 
+INFO [07-08|16:22:35] Successfully wrote genesis state         database=lightchaindata                                     hash=b38dfb…566e58
 ```
