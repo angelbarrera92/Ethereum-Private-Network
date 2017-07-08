@@ -14,7 +14,8 @@ sudo yum update
 sudo yum install golang -y
 git clone https://github.com/ethereum/go-ethereum.git
 cd go-ethereum/
-sudo make all```
+sudo make all
+```
 Los binarios compilados se encuentran en la siguiente ruta: ```~/go-ethereum/build/bin``` por lo que podemos añadir esta ruta al Path para que podamos usarlo de una forma mas comoda.
 ```bash
 export PATH=$PATH:/home/ec2-user/go-ethereum/build/bin
